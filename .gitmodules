@@ -1,0 +1,3 @@
+[submodule "pomutils-maven-plugin"]
+	path = pomutils-maven-plugin
+	url = https://github.com/project-millipede/pomutils-maven-plugin.git
