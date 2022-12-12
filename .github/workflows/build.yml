@@ -1,16 +1,14 @@
-name: CI-CD
+name: Build and Deploy Pom-Utils Maven Plugin
 
 on: push
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   GITHUB_REPOSITORY: ${{ github.REPOSITORY }}
-  # MAVEN_CLI_OPTS: -s ${{ github.WORKSPACE }}/settings.xml
   MAVEN_SETTINGS: ${{ github.WORKSPACE }}/settings.xml
   GIT_SUB_MODULE: pomutils-maven-plugin
 
 jobs:
-
   build-and-deploy:
     runs-on: ubuntu-latest
     container: maven:3.6.3-jdk-11
@@ -19,45 +17,11 @@ jobs:
         uses: actions/checkout@v3
         with:
           submodules: recursive
-
-      - name: Build artifact
+      - name: Build and test artifact
         run: |
-          
-          echo "github.WORKSPACE: ${{ github.WORKSPACE }}"
-          echo "GITHUB_WORKSPACE: ${GITHUB_WORKSPACE}"
-          pwd
-          ls
-                    
           cd ${GIT_SUB_MODULE}
-          
-          echo "github.WORKSPACE: ${{ github.WORKSPACE }}"
-          echo "GITHUB_WORKSPACE: ${GITHUB_WORKSPACE}"
-          pwd
-          ls
-
           mvn -s ${MAVEN_SETTINGS} clean install -P run-its
-
       - name: Deploy artifact
         run: |
           cd ${GIT_SUB_MODULE}
           mvn -s ${MAVEN_SETTINGS} deploy
-          
-
-      #    mvn -s ${GITHUB_WORKSPACE}/settings.xml clean install
-
-      #    mvn ${MAVEN_CLI_OPTS} clean install
-
-      #    cd ${GIT_SUB_MODULE}
-      #    mvn -s ${GITHUB_WORKSPACE}/settings.xml clean install
-      #    mvn -s ${GITHUB_WORKSPACE}/settings.xml clean install -P run-its
-
-      #- name: Deploy artifact
-      #  env:
-      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #    GITHUB_ACTOR: ${{ github.ACTOR }}
-      #    GITHUB_REPOSITORY: ${{ github.REPOSITORY }}
-      #  run: |
-      #    cd pomutils-maven-plugin
-      #    echo "ENV_GITHUB_TOKEN: $GITHUB_TOKEN"
-      #    echo "ENV_GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
-      #    mvn ${MAVEN_CLI_OPTS} clean install deploy -e
