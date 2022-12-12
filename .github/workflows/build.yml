@@ -5,7 +5,8 @@ on: push
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   GITHUB_REPOSITORY: ${{ github.REPOSITORY }}
-  MAVEN_CLI_OPTS: -s ${{ github.WORKSPACE }}/settings.xml
+  # MAVEN_CLI_OPTS: -s ${{ github.WORKSPACE }}/settings.xml
+  MAVEN_CLI_OPTS: -s ${GITHUB_WORKSPACE}/settings.xml
   GIT_SUB_MODULE: pomutils-maven-plugin
 
 jobs:
