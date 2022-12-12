@@ -6,7 +6,7 @@ env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   GITHUB_REPOSITORY: ${{ github.REPOSITORY }}
   # MAVEN_CLI_OPTS: -s ${{ github.WORKSPACE }}/settings.xml
-  MAVEN_CLI_OPTS: ${{ github.WORKSPACE }}/settings.xml
+  MAVEN_SETTINGS: ${{ github.WORKSPACE }}/settings.xml
   GIT_SUB_MODULE: pomutils-maven-plugin
 
 jobs:
@@ -35,7 +35,7 @@ jobs:
           pwd
           ls
 
-          mvn -s ${MAVEN_CLI_OPTS} clean install
+          mvn -s ${MAVEN_SETTINGS} clean install -P run-its
 
       #    mvn -s ${GITHUB_WORKSPACE}/settings.xml clean install
 
