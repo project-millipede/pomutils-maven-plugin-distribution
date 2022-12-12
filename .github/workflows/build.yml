@@ -33,8 +33,10 @@ jobs:
           echo "GITHUB_WORKSPACE: ${GITHUB_WORKSPACE}"
           pwd
           ls
-          
-          mvn -s ${GITHUB_WORKSPACE}/settings.xml clean install
+
+          mvn ${MAVEN_CLI_OPTS} clean install
+
+      #    mvn -s ${GITHUB_WORKSPACE}/settings.xml clean install
 
       #    mvn ${MAVEN_CLI_OPTS} clean install
 
