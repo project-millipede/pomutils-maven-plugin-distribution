@@ -3,6 +3,7 @@
           xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
 
     <servers>
+        <!--
         <server>
             <id>gitlab-maven</id>
             <configuration>
@@ -14,8 +15,16 @@
                 </httpHeaders>
             </configuration>
         </server>
+        -->
+
+        <server>
+            <id>github-maven</id>
+            <username>${env.GITHUB_ACTOR}</username>
+            <password>${env.GITHUB_TOKEN}</password>
+        </server>
     </servers>
 
+    <!--
     <profiles>
         <profile>
             <id>gitlab-build</id>
@@ -29,9 +38,24 @@
             </properties>
         </profile>
     </profiles>
+    -->
+
+    <profiles>
+        <profile>
+            <id>github-build</id>
+            <properties>
+                <releases.repo.id>github-maven</releases.repo.id>
+                <releases.repo.url>https://maven.pkg.github.com/${env.GITHUB_REPOSITORY}
+                </releases.repo.url>
+                <snapshots.repo.id>github-maven</snapshots.repo.id>
+                <snapshots.repo.url>https://maven.pkg.github.com/${env.GITHUB_REPOSITORY}
+                </snapshots.repo.url>
+            </properties>
+        </profile>
+    </profiles>
 
     <activeProfiles>
-        <activeProfile>gitlab-build</activeProfile>
+        <activeProfile>github-build</activeProfile>
     </activeProfiles>
 
 </settings>
