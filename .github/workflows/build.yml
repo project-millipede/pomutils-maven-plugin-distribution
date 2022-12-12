@@ -19,7 +19,7 @@ jobs:
         run: |
           echo "GITHUB_TOKEN - shielded: ${{secrets.GITHUB_TOKEN}}"
           echo "ENV_GITHUB_ACTOR: $GITHUB_ACTOR"
-          echo "ENV_GITHUB_ACTOR: $GITHUB_REPOSITORY"
+          echo "ENV_GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
 
   submodule-checkout:
     needs: [setup]
@@ -41,8 +41,8 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Set up JDK ${{env.JAVA_VERSION}}
-        uses: actions/setup-java@v3
+      #- name: Set up JDK ${{env.JAVA_VERSION}}
+      #  uses: actions/setup-java@v3
         #with:
         #  java-version: ${{env.JAVA_VERSION}}
         #  distribution: 'temurin'
