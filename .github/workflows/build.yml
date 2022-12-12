@@ -6,6 +6,7 @@ env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   GITHUB_REPOSITORY: ${{ github.REPOSITORY }}
   MAVEN_CLI_OPTS: -s ${{ github.WORKSPACE }}/settings.xml
+  GIT_SUB_MODULE: pomutils-maven-plugin
 
 jobs:
 
@@ -36,7 +37,7 @@ jobs:
 
       - name: Build feature
         run: |          
-          cd pomutils-maven-plugin
+          cd ${GIT_SUB_MODULE}
           mvn -s ${GITHUB_WORKSPACE}/settings.xml clean install
           mvn -s ${GITHUB_WORKSPACE}/settings.xml clean install -P run-its
       #- name: Deploy feature
