@@ -32,30 +32,14 @@
                     <property>
                         <name>Authorization</name>
                         <!--<value>${env.GITHUB_TOKEN}</value>-->
-                        <value>Bearer ${GITHUB_TOKEN}</value>
+                        <!-- working -->
+                        <!--<value>Bearer ${GITHUB_TOKEN}</value>-->
+                        <value>Bearer ${env.GITHUB_TOKEN}</value>
                     </property>
                 </httpHeaders>
             </configuration>
         </server>
-
     </servers>
-
-    <!--
-    <profiles>
-        <profile>
-            <id>gitlab-build</id>
-            <properties>
-                <releases.repo.id>gitlab-maven</releases.repo.id>
-                <releases.repo.url>https://gitlab.com/api/v4/projects/${env.CI_PROJECT_ID}/packages/maven
-                </releases.repo.url>
-                <snapshots.repo.id>gitlab-maven</snapshots.repo.id>
-                <snapshots.repo.url>https://gitlab.com/api/v4/projects/${env.CI_PROJECT_ID}/packages/maven
-                </snapshots.repo.url>
-            </properties>
-        </profile>
-    </profiles>
-    -->
-
 
     <profiles>
         <profile>
