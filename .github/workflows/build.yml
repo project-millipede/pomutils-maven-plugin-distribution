@@ -7,29 +7,33 @@ env:
   # MAVEN_CLI_OPTS: "-s settings.xml"
   # GITHUB_TOKEN: {{secrets.TOKEN}}
 
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GITHUB_REPOSITORY: ${{ github.REPOSITORY }}
+
 jobs:
-  setup:
-    name: Setup environment
-    runs-on: ubuntu-latest
-    steps:
-      - name: Create environment variables from github context and secrets
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_REPOSITORY: ${{ github.REPOSITORY }}
+
+  #setup:
+  #  name: Setup environment variables
+  #  runs-on: ubuntu-latest
+  #  steps:
+  #    - name: Create environment variables from github context and secrets
+  #      env:
+  #        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #        GITHUB_REPOSITORY: ${{ github.REPOSITORY }}
 
   submodule-checkout:
-    needs: [setup]
+    # needs: [setup]
 
     runs-on: ubuntu-latest
 
-    permissions:
-      contents: read
-      packages: write
+    # permissions:
+    #  contents: read
+    #  packages: write
 
     container: maven:3.6.3-jdk-11
 
-    env:
-      JAVA_VERSION: '11'
+    # env:
+    #  JAVA_VERSION: '11'
 
     steps:
       - name: Checkout repository and submodules
