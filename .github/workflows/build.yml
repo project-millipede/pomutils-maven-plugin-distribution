@@ -68,5 +68,5 @@ jobs:
       - name: Deploy feature
         run: |
           cd pomutils-maven-plugin
-          mvn ${MAVEN_CLI_OPTS} clean install deploy
+          mvn ${MAVEN_CLI_OPTS} clean install deploy -e
 
