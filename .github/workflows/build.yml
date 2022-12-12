@@ -34,7 +34,7 @@ jobs:
       - name: Checkout repository and submodules
         uses: actions/checkout@v3
         with:
-          submodules: normal
+          submodules: recursive
 
       #- name: Set up JDK ${{env.JAVA_VERSION}}
       #  uses: actions/setup-java@v3
@@ -45,9 +45,9 @@ jobs:
 
       - name: Build feature
         run: |
-          ls
+          ls -all
           cd pomutils-maven-plugin
-          ls
+          ls -all
           mvn ${MAVEN_CLI_OPTS} clean install
           mvn ${MAVEN_CLI_OPTS} clean install -P run-its
 
