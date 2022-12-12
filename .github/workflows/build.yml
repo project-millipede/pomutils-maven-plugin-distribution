@@ -45,6 +45,7 @@ jobs:
 
       - name: Build feature
         run: |
+          ls
           cd pomutils-maven-plugin
           mvn ${MAVEN_CLI_OPTS} clean install
           mvn ${MAVEN_CLI_OPTS} clean install -P run-its
