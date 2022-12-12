@@ -3,10 +3,11 @@ name: CI-CD
 on: push
 
 env:
+  # MAVEN_CLI_OPTS: "-s ../settings.xml"
+  # MAVEN_CLI_OPTS: -s ${GITHUB_WORKSPACE}/settings.xml
+  MAVEN_CLI_OPTS: -s ${{ github.WORKSPACE }}/settings.xml
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   GITHUB_REPOSITORY: ${{ github.REPOSITORY }}
-  MAVEN_CLI_OPTS: -s ${{ github.WORKSPACE }}/settings.xml
-  GIT_SUB_MODULE: pomutils-maven-plugin
 
 jobs:
 
@@ -19,8 +20,8 @@ jobs:
         with:
           submodules: recursive
 
-      #- name: Set up JDK ${{env.JAVA_VERSION}}
-      #  uses: actions/setup-java@v3
+        #- name: Set up JDK ${{env.JAVA_VERSION}}
+        #  uses: actions/setup-java@v3
         #with:
         #  java-version: ${{env.JAVA_VERSION}}
         #  distribution: 'temurin'
@@ -36,11 +37,15 @@ jobs:
         # mvn clean install deploy -s $GITHUB_WORKSPACE/settings.xml
 
       - name: Build feature
-        run: |          
-          cd ${GIT_SUB_MODULE}
-          mvn ${MAVEN_CLI_OPTS} clean install
-          mvn ${MAVEN_CLI_OPTS} clean install -P run-its
-
+        run: |
+          
+          echo "MAVEN_CLI_OPTS: ${MAVEN_CLI_OPTS}"
+          
+          cd pomutils-maven-plugin
+          
+          echo "MAVEN_CLI_OPTS: ${MAVEN_CLI_OPTS}"
+          mvn -s ${GITHUB_WORKSPACE}/settings.xml clean install
+          mvn -s ${GITHUB_WORKSPACE}/settings.xml clean install -P run-its
       #- name: Deploy feature
       #  env:
       #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -51,4 +56,3 @@ jobs:
       #    echo "ENV_GITHUB_TOKEN: $GITHUB_TOKEN"
       #    echo "ENV_GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
       #    mvn ${MAVEN_CLI_OPTS} clean install deploy -e
-
