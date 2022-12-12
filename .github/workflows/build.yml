@@ -42,10 +42,17 @@ jobs:
 
       - name: Set up JDK ${{env.JAVA_VERSION}}
         uses: actions/setup-java@v3
+        #with:
+        #  java-version: ${{env.JAVA_VERSION}}
+        #  distribution: 'temurin'
+        #  cache: maven
+
         with:
-          java-version: ${{env.JAVA_VERSION}}
+          # distribution: '<distribution>'
           distribution: 'temurin'
-          cache: maven
+          java-version: '11'
+          server-id: github-maven # Value of the distributionManagement/repository/id field of the pom.xml
+          settings-path: ${{ github.workspace }} # location for the settings.xml file
 
       - name: Build feature
         run: |
