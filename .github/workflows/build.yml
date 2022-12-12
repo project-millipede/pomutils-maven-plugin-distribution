@@ -19,27 +19,13 @@ jobs:
         with:
           submodules: recursive
 
-        #- name: Set up JDK ${{env.JAVA_VERSION}}
-        #  uses: actions/setup-java@v3
-        #with:
-        #  java-version: ${{env.JAVA_VERSION}}
-        #  distribution: 'temurin'
-        #  cache: maven
-
-        #with:
-        #  # distribution: '<distribution>'
-        #  distribution: 'temurin'
-        #  java-version: '11'
-        #  server-id: github-maven # Value of the distributionManagement/repository/id field of the pom.xml
-        #  settings-path: ${{ github.workspace }} # location for the settings.xml file
-
-        # mvn clean install deploy -s $GITHUB_WORKSPACE/settings.xml
-
       - name: Build artifact
         run: |          
           cd ${GIT_SUB_MODULE}
-          mvn -s ${GITHUB_WORKSPACE}/settings.xml clean install
-          mvn -s ${GITHUB_WORKSPACE}/settings.xml clean install -P run-its
+          mvn ${MAVEN_CLI_OPTS} clean install
+          mvn ${MAVEN_CLI_OPTS} clean install -P run-its
+      #    mvn -s ${GITHUB_WORKSPACE}/settings.xml clean install
+      #    mvn -s ${GITHUB_WORKSPACE}/settings.xml clean install -P run-its
       #- name: Deploy artifact
       #  env:
       #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
