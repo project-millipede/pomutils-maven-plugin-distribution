@@ -21,8 +21,14 @@ jobs:
 
       - name: Build artifact
         run: |
+          
+          echo "github.WORKSPACE: ${{ github.WORKSPACE }}"
+          
           cd pomutils-maven-plugin
-          mvn ${MAVEN_CLI_OPTS} clean install
+          
+          echo "github.WORKSPACE: ${{ github.WORKSPACE }}"
+
+      #    mvn ${MAVEN_CLI_OPTS} clean install
 
       #    cd ${GIT_SUB_MODULE}
       #    mvn -s ${GITHUB_WORKSPACE}/settings.xml clean install
