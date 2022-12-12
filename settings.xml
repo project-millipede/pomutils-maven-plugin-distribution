@@ -24,7 +24,7 @@
             <password>${env.GITHUB_TOKEN}</password>
         </server>
         -->
-        
+
         <server>
             <id>github-maven</id>
             <configuration>
