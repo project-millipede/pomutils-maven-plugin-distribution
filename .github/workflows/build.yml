@@ -25,6 +25,10 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: read
+      packages: write
+
     container: maven:3.6.3-jdk-11
 
     env:
