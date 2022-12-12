@@ -23,12 +23,12 @@ jobs:
         run: |
           
           echo "github.WORKSPACE: ${{ github.WORKSPACE }}"
-          echo "GITHUB_WORKSPACE: ${{ GITHUB_WORKSPACE }}"
+          echo "GITHUB_WORKSPACE: ${GITHUB_WORKSPACE}"
           
           cd pomutils-maven-plugin
           
           echo "github.WORKSPACE: ${{ github.WORKSPACE }}"
-          echo "GITHUB_WORKSPACE: ${{ GITHUB_WORKSPACE }}"
+          echo "GITHUB_WORKSPACE: ${GITHUB_WORKSPACE}"
 
       #    mvn ${MAVEN_CLI_OPTS} clean install
 
