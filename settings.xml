@@ -31,7 +31,8 @@
                 <httpHeaders>
                     <property>
                         <name>Authorization</name>
-                        <value>${env.GITHUB_TOKEN}</value>
+                        <!--<value>${env.GITHUB_TOKEN}</value>-->
+                        <value>Bearer ${GITHUB_TOKEN}</value>
                     </property>
                 </httpHeaders>
             </configuration>
