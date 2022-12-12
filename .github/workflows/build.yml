@@ -26,8 +26,8 @@ jobs:
           echo "GITHUB_WORKSPACE: ${GITHUB_WORKSPACE}"
           pwd
           ls
-          
-          cd pomutils-maven-plugin
+                    
+          cd ${GIT_SUB_MODULE}
           
           echo "github.WORKSPACE: ${{ github.WORKSPACE }}"
           echo "GITHUB_WORKSPACE: ${GITHUB_WORKSPACE}"
