@@ -37,6 +37,12 @@ jobs:
 
           mvn -s ${MAVEN_SETTINGS} clean install -P run-its
 
+      - name: Deploy artifact
+        run: |
+          cd ${GIT_SUB_MODULE}
+          mvn -s ${MAVEN_SETTINGS} deploy
+          
+
       #    mvn -s ${GITHUB_WORKSPACE}/settings.xml clean install
 
       #    mvn ${MAVEN_CLI_OPTS} clean install
