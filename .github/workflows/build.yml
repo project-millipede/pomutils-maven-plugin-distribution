@@ -4,7 +4,8 @@ on: push
 
 env:
   # MAVEN_CLI_OPTS: "-s ../settings.xml"
-  MAVEN_CLI_OPTS: -s ${GITHUB_WORKSPACE}/settings.xml
+  # MAVEN_CLI_OPTS: -s ${GITHUB_WORKSPACE}/settings.xml
+  MAVEN_CLI_OPTS: -s ${{ github.WORKSPACE }}/settings.xml
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   GITHUB_REPOSITORY: ${{ github.REPOSITORY }}
 
@@ -37,7 +38,13 @@ jobs:
 
       - name: Build feature
         run: |
+          
+          echo "MAVEN_CLI_OPTS: ${MAVEN_CLI_OPTS}"
+          
           cd pomutils-maven-plugin
+          
+          echo "MAVEN_CLI_OPTS: ${MAVEN_CLI_OPTS}"
+
           mvn -s ${GITHUB_WORKSPACE}/settings.xml clean install
           mvn -s ${GITHUB_WORKSPACE}/settings.xml clean install -P run-its
 
