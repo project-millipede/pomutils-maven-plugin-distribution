@@ -17,11 +17,26 @@
         </server>
         -->
 
+        <!--
         <server>
             <id>github-maven</id>
             <username>${env.GITHUB_ACTOR}</username>
             <password>${env.GITHUB_TOKEN}</password>
         </server>
+        -->
+        
+        <server>
+            <id>github-maven</id>
+            <configuration>
+                <httpHeaders>
+                    <property>
+                        <name>Authorization</name>
+                        <value>${env.GITHUB_TOKEN}</value>
+                    </property>
+                </httpHeaders>
+            </configuration>
+        </server>
+
     </servers>
 
     <!--
