@@ -21,9 +21,13 @@ jobs:
 
       - name: Build artifact
         run: |          
-          cd ${GIT_SUB_MODULE}
-          mvn -s ${GITHUB_WORKSPACE}/settings.xml clean install
-          mvn -s ${GITHUB_WORKSPACE}/settings.xml clean install -P run-its
+      #    cd ${GIT_SUB_MODULE}
+      #    mvn -s ${GITHUB_WORKSPACE}/settings.xml clean install
+      #    mvn -s ${GITHUB_WORKSPACE}/settings.xml clean install -P run-its
+
+          cd $GIT_SUB_MODULE
+          mvn $MAVEN_CLI_OPTS clean install
+
       #- name: Deploy artifact
       #  env:
       #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
