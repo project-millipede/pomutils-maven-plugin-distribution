@@ -68,5 +68,9 @@ jobs:
       - name: Deploy feature
         run: |
           cd pomutils-maven-plugin
+          
+          echo "ENV_GITHUB_TOKEN: $GITHUB_TOKEN"
+          echo "ENV_GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
+          
           mvn ${MAVEN_CLI_OPTS} clean install deploy -e
 
