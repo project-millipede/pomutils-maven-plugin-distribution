@@ -21,9 +21,9 @@ jobs:
 
       - name: Build artifact
         run: |
-          cd ${GIT_SUB_MODULE}
+          cd pomutils-maven-plugin
           mvn ${MAVEN_CLI_OPTS} clean install
-          
+
       #    cd ${GIT_SUB_MODULE}
       #    mvn -s ${GITHUB_WORKSPACE}/settings.xml clean install
       #    mvn -s ${GITHUB_WORKSPACE}/settings.xml clean install -P run-its
