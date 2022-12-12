@@ -29,7 +29,7 @@ jobs:
       contents: read
       packages: write
 
-    container: maven:3.6.3-jdk-11
+    # container: maven:3.6.3-jdk-11
 
     env:
       JAVA_VERSION: '11'
@@ -40,12 +40,12 @@ jobs:
         with:
           submodules: recursive
 
-      #- name: Set up JDK ${{env.JAVA_VERSION}}
-      #  uses: actions/setup-java@v3
-      #  with:
-      #    java-version: ${{env.JAVA_VERSION}}
-      #    distribution: 'temurin'
-      #    cache: maven
+      - name: Set up JDK ${{env.JAVA_VERSION}}
+        uses: actions/setup-java@v3
+        with:
+          java-version: ${{env.JAVA_VERSION}}
+          distribution: 'temurin'
+          cache: maven
 
       - name: Build feature
         run: |
