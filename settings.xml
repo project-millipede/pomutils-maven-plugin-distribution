@@ -40,6 +40,7 @@
     </profiles>
     -->
 
+    <!--
     <profiles>
         <profile>
             <id>github-build</id>
@@ -53,6 +54,22 @@
             </properties>
         </profile>
     </profiles>
+    -->
+
+    <profiles>
+        <profile>
+            <id>github-build</id>
+            <properties>
+                <releases.repo.id>github-maven</releases.repo.id>
+                <releases.repo.url>https://maven.pkg.github.com/${env.GITHUB_ACTOR}/pomutils-maven-plugin-distribution
+                </releases.repo.url>
+                <snapshots.repo.id>github-maven</snapshots.repo.id>
+                <snapshots.repo.url>https://maven.pkg.github.com/${env.GITHUB_ACTOR}/pomutils-maven-plugin-distribution
+                </snapshots.repo.url>
+            </properties>
+        </profile>
+    </profiles>
+
 
     <activeProfiles>
         <activeProfile>github-build</activeProfile>
