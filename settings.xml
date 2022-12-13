@@ -4,6 +4,7 @@
 
     <servers>
         <server>
+            <!--
             <id>github-maven</id>
             <configuration>
                 <httpHeaders>
@@ -13,6 +14,10 @@
                     </property>
                 </httpHeaders>
             </configuration>
+            -->
+            <id>github</id>
+            <username>gurkerl83</username>
+            <password>${GITHUB_TOKEN}</password>
         </server>
         <server>
             <id>gitlab-maven</id>
@@ -20,7 +25,7 @@
                 <httpHeaders>
                     <property>
                         <name>Private-Token</name>
-                        <value>${GITLAB_DEPLOY_TOKEN}</value>
+                        <value>${GITLAB_TOKEN}</value>
                     </property>
                 </httpHeaders>
             </configuration>
@@ -53,8 +58,8 @@
     </profiles>
 
     <activeProfiles>
-        <!--<activeProfile>github-build</activeProfile>-->
-        <activeProfile>gitlab-build</activeProfile>
+        <activeProfile>github-build</activeProfile>
+        <!--<activeProfile>gitlab-build</activeProfile>-->
     </activeProfiles>
 
 </settings>
