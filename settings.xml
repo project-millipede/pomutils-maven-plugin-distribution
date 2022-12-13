@@ -9,7 +9,7 @@
                 <httpHeaders>
                     <property>
                         <name>Authorization</name>
-                        <value>Bearer ${env.GITHUB_TOKEN}</value>
+                        <value>Bearer ${GITHUB_TOKEN}</value>
                     </property>
                 </httpHeaders>
             </configuration>
@@ -21,10 +21,10 @@
             <id>github-build</id>
             <properties>
                 <releases.repo.id>github-maven</releases.repo.id>
-                <releases.repo.url>https://maven.pkg.github.com/${env.GITHUB_REPOSITORY}
+                <releases.repo.url>https://maven.pkg.github.com/${GITHUB_REPOSITORY}
                 </releases.repo.url>
                 <snapshots.repo.id>github-maven</snapshots.repo.id>
-                <snapshots.repo.url>https://maven.pkg.github.com/${env.GITHUB_REPOSITORY}
+                <snapshots.repo.url>https://maven.pkg.github.com/${GITHUB_REPOSITORY}
                 </snapshots.repo.url>
             </properties>
         </profile>
