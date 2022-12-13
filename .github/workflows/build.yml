@@ -8,7 +8,6 @@ env:
   MAVEN_SETTINGS: ${{ github.WORKSPACE }}/settings.xml
   GIT_SUB_MODULE: pomutils-maven-plugin
 
-
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
