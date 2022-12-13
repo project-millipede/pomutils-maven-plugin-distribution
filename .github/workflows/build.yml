@@ -25,13 +25,13 @@ jobs:
           distribution: 'temurin'
           java-version: ${{env.JAVA_VERSION}}
           cache: 'maven'
-          server-id: github-maven # Value of the distributionManagement/repository/id field of the pom.xml
-          settings-path: ${{ github.workspace }} # location for the settings.xml file
+          # server-id: gitlab-maven # Value of the distributionManagement/repository/id field of the pom.xml
+          # settings-path: ${{ github.workspace }} # location for the settings.xml file
       - name: Build and test artifact
         run: |
           cd ${GIT_SUB_MODULE}
-          mvn clean install -P run-its
+          mvn -s ${MAVEN_SETTINGS} clean install -P run-its
       - name: Deploy artifact
         run: |
           cd ${GIT_SUB_MODULE}
-          mvn deploy
+          mvn -s ${MAVEN_SETTINGS} deploy
