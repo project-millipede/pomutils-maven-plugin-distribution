@@ -14,6 +14,17 @@
                 </httpHeaders>
             </configuration>
         </server>
+        <server>
+            <id>gitlab-maven</id>
+            <configuration>
+                <httpHeaders>
+                    <property>
+                        <name>Private-Token</name>
+                        <value>${GITLAB_DEPLOY_TOKEN}</value>
+                    </property>
+                </httpHeaders>
+            </configuration>
+        </server>
     </servers>
 
     <profiles>
@@ -28,10 +39,22 @@
                 </snapshots.repo.url>
             </properties>
         </profile>
+        <profile>
+            <id>gitlab-build</id>
+            <properties>
+                <releases.repo.id>gitlab-maven</releases.repo.id>
+                <releases.repo.url>https://gitlab.com/api/v4/projects/18580785/packages/maven
+                </releases.repo.url>
+                <snapshots.repo.id>gitlab-maven</snapshots.repo.id>
+                <snapshots.repo.url>https://gitlab.com/api/v4/projects/18580785/packages/maven
+                </snapshots.repo.url>
+            </properties>
+        </profile>
     </profiles>
 
     <activeProfiles>
-        <activeProfile>github-build</activeProfile>
+        <!--<activeProfile>github-build</activeProfile>-->
+        <activeProfile>gitlab-build</activeProfile>
     </activeProfiles>
 
 </settings>
