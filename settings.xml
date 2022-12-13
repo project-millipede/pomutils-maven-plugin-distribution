@@ -52,7 +52,7 @@
         </profile>
     </profiles>
 
-    
+
     <activeProfiles>
         <!--<activeProfile>github-build</activeProfile>-->
         <activeProfile>gitlab-build</activeProfile>

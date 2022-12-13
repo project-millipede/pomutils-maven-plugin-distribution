@@ -8,21 +8,30 @@ env:
   GITHUB_REPOSITORY: ${{ github.REPOSITORY }}
   MAVEN_SETTINGS: ${{ github.WORKSPACE }}/settings.xml
   GIT_SUB_MODULE: pomutils-maven-plugin
+  JAVA_VERSION: '11'
+
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    container: maven:3.6.3-jdk-11
     steps:
       - name: Checkout repository and submodules
         uses: actions/checkout@v3
         with:
           submodules: recursive
+      - name: Set up JDK ${{env.JAVA_VERSION}}
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: ${{env.JAVA_VERSION}}
+          cache: 'maven'
+          server-id: github-maven # Value of the distributionManagement/repository/id field of the pom.xml
+          settings-path: ${{ github.workspace }} # location for the settings.xml file
       - name: Build and test artifact
         run: |
           cd ${GIT_SUB_MODULE}
-          mvn -s ${MAVEN_SETTINGS} clean install -P run-its
+          mvn clean install -P run-its
       - name: Deploy artifact
         run: |
           cd ${GIT_SUB_MODULE}
-          mvn -s ${MAVEN_SETTINGS} deploy
+          mvn deploy
